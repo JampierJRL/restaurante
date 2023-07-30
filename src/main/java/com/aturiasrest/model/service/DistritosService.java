@@ -14,7 +14,7 @@ public interface DistritosService {
 	 * @param password
 	 * @return
 	 */
-	List<DistritosModel> srvListaDistritos(String searchs);
+	List<DistritosModel> srvListaDistritos(int idprovincia);
 	
 	/**
 	 * @autor Jampier

@@ -30,7 +30,7 @@ public class SucursalesModel {
 	@Column(name = "ruc", length = 15, nullable = false)
 	private String ruc;
 	
-	@OneToOne
+	@OneToOne()
 	@JoinColumn(name = "cod_departamento", nullable = false)
 	private DepartamentosModel codUbigeo;
 

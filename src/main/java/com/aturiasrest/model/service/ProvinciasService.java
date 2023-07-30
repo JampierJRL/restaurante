@@ -14,7 +14,7 @@ public interface ProvinciasService {
 	 * @param password
 	 * @return
 	 */
-	List<ProvinciasModel> srvListaProvincias(String searchs);
+	List<ProvinciasModel> srvListaProvincias(int idDepartamento);
 	
 	/**
 	 * @autor Jampier

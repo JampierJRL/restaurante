@@ -11,18 +11,19 @@ import com.aturiasrest.exception.ErrorNotFoundException;
 import com.aturiasrest.model.entity.ProvinciasModel;
 import com.aturiasrest.model.repository.ProvinciasRepository;
 import com.aturiasrest.model.service.ProvinciasService;
+
 @Service
 public class ProvinciasServiceImple implements ProvinciasService {
 
 	@Autowired
 	private ProvinciasRepository provinciasRepository;
-	
+
 	@Override
-	public List<ProvinciasModel> srvListaProvincias(String searchs) {
+	public List<ProvinciasModel> srvListaProvincias(int iddepartamento) {
 		List<ProvinciasModel> lista = new ArrayList<>();
 		try {
-//			 SELECT * FROM TB_USUARIO
-			lista= provinciasRepository.findAll();
+//			 SELECT * FROM TB_USUARIO where iddepratemento = ?
+			lista = provinciasRepository.findByDepartamentoCodDepartamento(iddepartamento);
 		} catch (Exception e) {
 			throw e;
 		}
@@ -31,17 +32,17 @@ public class ProvinciasServiceImple implements ProvinciasService {
 
 	@Override
 	public HashMap<String, Object> srvGuardarProvincia(ProvinciasModel provinciaModel) {
-HashMap<String, Object> response = new HashMap<>();
-		
+		HashMap<String, Object> response = new HashMap<>();
+
 		try {
-			ProvinciasModel userDB =	provinciasRepository.save(provinciaModel);
-			
+			ProvinciasModel userDB = provinciasRepository.save(provinciaModel);
+
 			response.put("message", "Provincia se proceso correctamente");
 			response.put("data", userDB);
 		} catch (Exception e) {
 			throw e;
 		}
-		
+
 		return response;
 	}
 
@@ -52,8 +53,8 @@ HashMap<String, Object> response = new HashMap<>();
 		try {
 //			BUSCAMOS
 			provinciasRepository.findById(codPorvincia)
-			.orElseThrow(()-> new ErrorNotFoundException("Usuario No encontrado con el ID: " + codPorvincia));
-			
+					.orElseThrow(() -> new ErrorNotFoundException("Usuario No encontrado con el ID: " + codPorvincia));
+
 //			ACTUALIZAMOS
 			ProvinciasModel userDB = provinciasRepository.save(provinciaModel);
 
@@ -72,9 +73,9 @@ HashMap<String, Object> response = new HashMap<>();
 
 		try {
 //			BUSCAMOS
-			provinciasRepository.findById(codPorvincia)
-			.orElseThrow(()-> new ErrorNotFoundException("Provincia No encontrado con el ID: " + codPorvincia));
-			
+			provinciasRepository.findById(codPorvincia).orElseThrow(
+					() -> new ErrorNotFoundException("Provincia No encontrado con el ID: " + codPorvincia));
+
 //			ELIMINAMOS
 			provinciasRepository.deleteById(codPorvincia);
 
