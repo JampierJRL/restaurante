@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "tb_categorias")
@@ -13,8 +14,10 @@ public class CategoriasModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "cod_categoria")
 	private int codCategoria;
 	
+	@NotBlank(message = "este campo es requerido")
 	@Column(name = "descripcion_categoria",length = 60, nullable = false)
 	private String descripcionCategoria;
 	

@@ -13,7 +13,7 @@ public class TipoDocumentoModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cod_tipo_documenot")
+	@Column(name = "cod_tipo_documento")
 	private int codTipoDocumento;
 	
 	@Column(name = "descripcion_documento", length = 45, nullable = false)

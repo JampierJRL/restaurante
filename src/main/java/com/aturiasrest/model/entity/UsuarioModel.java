@@ -23,15 +23,15 @@ public class UsuarioModel {
 	@Column(name = "cod_usuario", nullable = false)
 	private int codUsuario;
 	
-	@OneToOne
+	@OneToOne()
 	@JoinColumn(name = "numero_documento", nullable = false)
-	private DatosPersonalesModel numeroDocumento;
+	private DatosPersonalesModel persona;
 	
 	@Email
 	@Column(name = "email", length = 45,nullable = false)
 	private String email;
 	
-	@Column(name = "password", length = 45,nullable = true)
+	@Column(name = "password", length = 200,nullable = false)
 	private String password;
 	
 	@Column(name = "fecha_cambio_clave", columnDefinition = "DATE")
@@ -43,31 +43,31 @@ public class UsuarioModel {
 	@Column(name = "estado_clave", columnDefinition = "TINYINT default 1")
 	private boolean estadoClave;
 	
-	@OneToOne
-	@JoinColumn(name = "cod_perfil", nullable = false)
-	private SucursalesModel codSucursal;
-	
-	@OneToOne
+	@OneToOne()
 	@JoinColumn(name = "cod_sucursal", nullable = false)
-	private PerfilesModel codPerfil;
+	private SucursalesModel sucursal;
+	
+	@OneToOne()
+	@JoinColumn(name = "cod_perfil", nullable = false)
+	private PerfilesModel perfil;
 
 	public UsuarioModel() {
 		super();
 	}
 
-	public UsuarioModel(int codUsuario, DatosPersonalesModel numeroDocumento, @Email String email, String password,
-			Date fechaCambioClave, boolean estadoCuenta, boolean estadoClave, SucursalesModel codSucursal,
-			PerfilesModel codPerfil) {
+	public UsuarioModel(int codUsuario, DatosPersonalesModel persona, @Email String email, String password,
+			Date fechaCambioClave, boolean estadoCuenta, boolean estadoClave, SucursalesModel sucursal,
+			PerfilesModel perfil) {
 		super();
 		this.codUsuario = codUsuario;
-		this.numeroDocumento = numeroDocumento;
+		this.persona = persona;
 		this.email = email;
 		this.password = password;
 		this.fechaCambioClave = fechaCambioClave;
 		this.estadoCuenta = estadoCuenta;
 		this.estadoClave = estadoClave;
-		this.codSucursal = codSucursal;
-		this.codPerfil = codPerfil;
+		this.sucursal = sucursal;
+		this.perfil = perfil;
 	}
 
 	public int getCodUsuario() {
@@ -78,12 +78,12 @@ public class UsuarioModel {
 		this.codUsuario = codUsuario;
 	}
 
-	public DatosPersonalesModel getNumeroDocumento() {
-		return numeroDocumento;
+	public DatosPersonalesModel getPersona() {
+		return persona;
 	}
 
-	public void setNumeroDocumento(DatosPersonalesModel numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
+	public void setPersona(DatosPersonalesModel persona) {
+		this.persona = persona;
 	}
 
 	public String getEmail() {
@@ -126,30 +126,26 @@ public class UsuarioModel {
 		this.estadoClave = estadoClave;
 	}
 
-	public SucursalesModel getCodSucursal() {
-		return codSucursal;
+	public SucursalesModel getSucursal() {
+		return sucursal;
 	}
 
-	public void setCodSucursal(SucursalesModel codSucursal) {
-		this.codSucursal = codSucursal;
+	public void setSucursal(SucursalesModel sucursal) {
+		this.sucursal = sucursal;
 	}
 
-	public PerfilesModel getCodPerfil() {
-		return codPerfil;
+	public PerfilesModel getPerfil() {
+		return perfil;
 	}
 
-	public void setCodPerfil(PerfilesModel codPerfil) {
-		this.codPerfil = codPerfil;
+	public void setPerfil(PerfilesModel perfil) {
+		this.perfil = perfil;
 	}
 
 	@Override
 	public String toString() {
-		return "UsuarioModel [codUsuario=" + codUsuario + ", numeroDocumento=" + numeroDocumento + ", email=" + email
-				+ ", password=" + password + ", fechaCambioClave=" + fechaCambioClave + ", estadoCuenta=" + estadoCuenta
-				+ ", estadoClave=" + estadoClave + ", codSucursal=" + codSucursal + ", codPerfil=" + codPerfil + "]";
+		return "UsuarioModel [codUsuario=" + codUsuario + ", persona=" + persona + ", email=" + email + ", password="
+				+ password + ", fechaCambioClave=" + fechaCambioClave + ", estadoCuenta=" + estadoCuenta
+				+ ", estadoClave=" + estadoClave + ", sucursal=" + sucursal + ", perfil=" + perfil + "]";
 	}
-	
-	
-	
-	
 }

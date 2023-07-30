@@ -21,10 +21,10 @@ public class ProductosModel {
 	@Column(name = "descripcion_producto", length = 200, nullable = false)
 	private String descripcionProducto;
 	
-	@Column(name = "precio_compra", columnDefinition = "DECIMAL")
+	@Column(name = "precio_compra", columnDefinition = "DECIMAL(18,2)")
 	private Double precioCompra;
 	
-	@Column(name = "precio_venta", columnDefinition = "DECIMAL")
+	@Column(name = "precio_venta", columnDefinition = "DECIMAL(18,2)")
 	private Double precioVenta;
 	
 	@Column(name = "stock_compra", nullable = true)
@@ -39,16 +39,16 @@ public class ProductosModel {
 	@Column(name = "estado", columnDefinition = "TINYINT default 1")
 	private boolean estado;
 	
-	@OneToOne
+	@OneToOne()
 	@JoinColumn(name = "cod_categoria", nullable = false)
-	private CategoriasModel codCategoria;
+	private CategoriasModel categoria;
 
 	public ProductosModel() {
 		super();
 	}
 
 	public ProductosModel(int codProducto, String descripcionProducto, Double precioCompra, Double precioVenta,
-			int stockCompra, int stockAlmacen, String obervacion, boolean estado, CategoriasModel codCategoria) {
+			int stockCompra, int stockAlmacen, String obervacion, boolean estado, CategoriasModel categoria) {
 		super();
 		this.codProducto = codProducto;
 		this.descripcionProducto = descripcionProducto;
@@ -58,7 +58,7 @@ public class ProductosModel {
 		this.stockAlmacen = stockAlmacen;
 		this.obervacion = obervacion;
 		this.estado = estado;
-		this.codCategoria = codCategoria;
+		this.categoria = categoria;
 	}
 
 	public int getCodProducto() {
@@ -125,12 +125,12 @@ public class ProductosModel {
 		this.estado = estado;
 	}
 
-	public CategoriasModel getCodCategoria() {
-		return codCategoria;
+	public CategoriasModel getcategoria() {
+		return categoria;
 	}
 
-	public void setCodCategoria(CategoriasModel codCategoria) {
-		this.codCategoria = codCategoria;
+	public void setcategoria(CategoriasModel categoria) {
+		this.categoria = categoria;
 	}
 
 	@Override
@@ -138,7 +138,7 @@ public class ProductosModel {
 		return "ProductosModel [codProducto=" + codProducto + ", descripcionProducto=" + descripcionProducto
 				+ ", precioCompra=" + precioCompra + ", precioVenta=" + precioVenta + ", stockCompra=" + stockCompra
 				+ ", stockAlmacen=" + stockAlmacen + ", obervacion=" + obervacion + ", estado=" + estado
-				+ ", codCategoria=" + codCategoria + "]";
+				+ ", categoria=" + categoria + "]";
 	}
 	
 }

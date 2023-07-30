@@ -21,19 +21,19 @@ public class ProvinciasModel {
 	@Column(name = "nombre_provincia", length = 75, nullable = false)
 	private String nombreProvincia;
 	
-	@OneToOne
+	@OneToOne()
 	@JoinColumn(name = "cod_departamento", nullable = false)
-	private DepartamentosModel codDepartamento;
+	private DepartamentosModel departamento;
 
 	public ProvinciasModel() {
 		super();
 	}
 
-	public ProvinciasModel(int codProvincia, String nombreProvincia, DepartamentosModel codDepartamento) {
+	public ProvinciasModel(int codProvincia, String nombreProvincia, DepartamentosModel departamento) {
 		super();
 		this.codProvincia = codProvincia;
 		this.nombreProvincia = nombreProvincia;
-		this.codDepartamento = codDepartamento;
+		this.departamento = departamento;
 	}
 
 	public int getCodProvincia() {
@@ -52,18 +52,18 @@ public class ProvinciasModel {
 		this.nombreProvincia = nombreProvincia;
 	}
 
-	public DepartamentosModel getCodDepartamento() {
-		return codDepartamento;
+	public DepartamentosModel getdepartamento() {
+		return departamento;
 	}
 
-	public void setCodDepartamento(DepartamentosModel codDepartamento) {
-		this.codDepartamento = codDepartamento;
+	public void setdepartamento(DepartamentosModel departamento) {
+		this.departamento = departamento;
 	}
 
 	@Override
 	public String toString() {
 		return "ProvinciasModel [codProvincia=" + codProvincia + ", nombreProvincia=" + nombreProvincia
-				+ ", codDepartamento=" + codDepartamento + "]";
+				+ ", departamento=" + departamento + "]";
 	}
 	
 	
