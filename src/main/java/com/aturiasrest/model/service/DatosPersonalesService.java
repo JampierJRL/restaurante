@@ -3,6 +3,8 @@ package com.aturiasrest.model.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.aturiasrest.model.entity.DatosPersonalesModel;
 
 public interface DatosPersonalesService {

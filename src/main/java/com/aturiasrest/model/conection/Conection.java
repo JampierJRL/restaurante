@@ -48,7 +48,7 @@ public class Conection {
 		driver.setUrl(
 				"jdbc:mysql://localhost:3306/dbasturiosrest?useSSL=false&serverTimezone=America/Lima&allowPublicKeyRetrieval=true");
 		driver.setUsername("root");
-		driver.setPassword("MOREinga02054$$");
+		driver.setPassword("janpier159");
 
 		return driver;
 	}
@@ -78,7 +78,9 @@ public class Conection {
 		propiedad.setProperty("hibernate.hbm2ddl.auto", "update");
 		// #VALIDA TABLAS
 		// propiedad.setProperty("hibernate.hbm2ddl.auto", "validate");
+		//Visualizar las consultas ejecutas en SQL
 		propiedad.setProperty("hibernate.show_sql", "true");
+		//Parte de la consulta que permite visualizar el formato en SQL
 		propiedad.setProperty("hibernate.format_sql", "true");
 		return propiedad;
 	}
