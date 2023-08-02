@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.aturiasrest.model.entity.DatosPersonalesModel;
 
 @Repository
-public interface DatosPersonalesRepository extends JpaRepository<DatosPersonalesModel, Integer> {
+public interface DatosPersonalesRepository extends JpaRepository<DatosPersonalesModel, String> {
 
 }

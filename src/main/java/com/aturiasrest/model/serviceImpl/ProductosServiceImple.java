@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aturiasrest.exception.ErrorNotFoundException;
-import com.aturiasrest.model.entity.CategoriasModel;
 import com.aturiasrest.model.entity.ProductosModel;
 import com.aturiasrest.model.repository.ProductosRepository;
 import com.aturiasrest.model.service.ProductosService;

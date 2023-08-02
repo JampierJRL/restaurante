@@ -1,12 +1,13 @@
 package com.aturiasrest.model.entity;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,7 +22,7 @@ public class ProvinciasModel {
 	@Column(name = "nombre_provincia", length = 75, nullable = false)
 	private String nombreProvincia;
 	
-	@OneToOne()
+	@ManyToOne()
 	@JoinColumn(name = "cod_departamento", nullable = false)
 	private DepartamentosModel departamento;
 

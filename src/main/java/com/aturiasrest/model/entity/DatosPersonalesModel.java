@@ -1,95 +1,116 @@
 package com.aturiasrest.model.entity;
 
-
 import java.util.Date;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "tb_datos_personales")
 public class DatosPersonalesModel {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "numero_documento", nullable = false)
-	private int numeroDocumento;
+	@Min(value = 8, message = "ingrese como minimo 8 caracteres")
+	@Pattern(regexp = "^[0-9]+$", message = "solo se acepta valores numericos")
+	@Column(name = "numero_documento", length = 20, nullable = false)
+	private String numeroDocumento;
+
 	
 	@OneToOne()
 	@JoinColumn(name = "cod_tipo_documento", nullable = false)
-	private TipoDocumentoModel tipoDocumento; 
-	
+	private TipoDocumentoModel tipoDocumento;
+
+	@NotEmpty(message = "Este campo es requerido")
+	@Length(max = 55, message = "Supera los 55 caracteres")
 	@Column(name = "primer_nombre", length = 55, nullable = false)
 	private String primerNombre;
-	
+
+	@Max(value = 9, message = "Ingrese 9 digitos")
 	@Column(name = "sexo_descripcion", length = 9, nullable = true)
 	private String sexoDescripcion;
-	
+
+	@NotNull(message = "requerido")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "es-PE", timezone = "America/Lima")
-	@Column(name = "fecha_nacimiento", columnDefinition = "DATE")
+	@Column(name = "fecha_nacimiento", columnDefinition = "DATE", nullable = false)
 	private Date fechaNacimiento;
-	
+
 	@Column(name = "direccion", columnDefinition = "TEXT")
 	private String direccion;
-	
+
+	@Pattern(regexp = "^[0-9 ]+$")
 	@Column(name = "telefono", length = 12, nullable = true)
 	private String telefono;
-	
+
+	@Length(max = 15, message = "supera los 15 caracteres")
 	@Column(name = "ruc", length = 15, nullable = true)
 	private String ruc;
-	
+
+	@NotEmpty(message = "este campo es reqerido")
 	@Email(message = "email no valido")
+	@Length(max = 85, message = "este campo supera los 85 caracteres")
 	@Column(name = "email", length = 85, nullable = false)
 	private String email;
-	
+
+	@NotNull(message = "requerido")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "es-PE", timezone = "America/Lima")
-	@Column(name = "fecha_ingreso", columnDefinition = "DATE")
+	@Column(name = "fecha_ingreso", columnDefinition = "DATE", nullable = false)
 	private Date fechaIngreso;
-	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "es-PE", timezone = "America/Lima")
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", locale = "es-PE", timezone = "America/Lima")
 	@Column(name = "fecha_egreso")
 	private Date fechaEgreso;
-	
+
 	@Column(name = "segundo_nombre", length = 50, nullable = true)
 	private String segundoNombre;
-	
+
+	@NotEmpty(message = "Este campo es requerido")
+	@Length(max = 40, message = "Supera los 40 caracteres")
 	@Column(name = "apellido_paterno", length = 40, nullable = false)
 	private String apellidoPaterno;
-	
+
+	@NotEmpty(message = "Este campo es requerido")
+	@Length(max = 40, message = "Supera los 40 caracteres")
 	@Column(name = "apellido_materno", length = 40, nullable = false)
 	private String apellidoMaterno;
-	
+
 	@Column(name = "razon_social", length = 80, nullable = true)
 	private String razonSocial;
-	
+
+	@Pattern(regexp = "^[0-9 +]+$")
 	@Column(name = "celular", length = 15, nullable = true)
 	private String celular;
-	
+
 	@Column(name = "estado_persona", columnDefinition = "TINYINT(1) default 1")
 	private boolean estadoPersona;
-	
+
+	//CAMBIAR POR DEPARTAMENTOMODEL A DISTRITOMODEL Y SU CODIGO
 	@OneToOne()
 	@JoinColumn(name = "cod_departamento", nullable = false)
-	private DepartamentosModel codUbigeo;
+	private DepartamentosModel ubigeo;
 
 	public DatosPersonalesModel() {
 		super();
 	}
 
-	public DatosPersonalesModel(int numeroDocumento, TipoDocumentoModel tipoDocumento, String primerNombre,
+	public DatosPersonalesModel(String numeroDocumento, TipoDocumentoModel tipoDocumento, String primerNombre,
 			String sexoDescripcion, Date fechaNacimiento, String direccion, String telefono, String ruc,
 			@Email(message = "email no valido") String email, Date fechaIngreso, Date fechaEgreso, String segundoNombre,
 			String apellidoPaterno, String apellidoMaterno, String razonSocial, String celular, boolean estadoPersona,
-			DepartamentosModel codUbigeo) {
+			DepartamentosModel ubigeo) {
 		super();
 		this.numeroDocumento = numeroDocumento;
 		this.tipoDocumento = tipoDocumento;
@@ -108,14 +129,14 @@ public class DatosPersonalesModel {
 		this.razonSocial = razonSocial;
 		this.celular = celular;
 		this.estadoPersona = estadoPersona;
-		this.codUbigeo = codUbigeo;
+		this.ubigeo = ubigeo;
 	}
 
-	public int getNumeroDocumento() {
+	public String getNumeroDocumento() {
 		return numeroDocumento;
 	}
 
-	public void setNumeroDocumento(int numeroDocumento) {
+	public void setNumeroDocumento(String numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
 	}
 
@@ -247,12 +268,12 @@ public class DatosPersonalesModel {
 		this.estadoPersona = estadoPersona;
 	}
 
-	public DepartamentosModel getCodUbigeo() {
-		return codUbigeo;
+	public DepartamentosModel getubigeo() {
+		return ubigeo;
 	}
 
-	public void setCodUbigeo(DepartamentosModel codUbigeo) {
-		this.codUbigeo = codUbigeo;
+	public void setubigeo(DepartamentosModel ubigeo) {
+		this.ubigeo = ubigeo;
 	}
 
 	@Override
@@ -263,6 +284,6 @@ public class DatosPersonalesModel {
 				+ email + ", fechaIngreso=" + fechaIngreso + ", fechaEgreso=" + fechaEgreso + ", segundoNombre="
 				+ segundoNombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno
 				+ ", razonSocial=" + razonSocial + ", celular=" + celular + ", estadoPersona=" + estadoPersona
-				+ ", codUbigeo=" + codUbigeo + "]";
+				+ ", ubigeo=" + ubigeo + "]";
 	}
 }

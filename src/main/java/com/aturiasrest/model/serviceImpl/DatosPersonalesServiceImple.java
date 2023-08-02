@@ -43,7 +43,7 @@ public class DatosPersonalesServiceImple implements DatosPersonalesService {
 
 	@Override
 	public HashMap<String, Object> srvActualizarDatosPersonales(DatosPersonalesModel datosPersonalesModel,
-			int numeroDocumento) {
+			String numeroDocumento) {
 		HashMap<String, Object> response = new HashMap<>();
 		try {
 			datosPersonalesRepository.findById(numeroDocumento)
@@ -57,7 +57,7 @@ public class DatosPersonalesServiceImple implements DatosPersonalesService {
 	}
 
 	@Override
-	public HashMap<String, Object> srvEliminarDatosPersonales(int numeroDocumento) {
+	public HashMap<String, Object> srvEliminarDatosPersonales(String numeroDocumento) {
 		HashMap<String, Object> response = new HashMap<>();
 		try {
 			datosPersonalesRepository.deleteById(numeroDocumento);

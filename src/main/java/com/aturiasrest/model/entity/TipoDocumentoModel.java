@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "tb_tipo_documento")
@@ -13,6 +14,7 @@ public class TipoDocumentoModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotEmpty(message = "Oblogatorio")
 	@Column(name = "cod_tipo_documento")
 	private int codTipoDocumento;
 	

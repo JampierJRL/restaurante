@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,10 +18,10 @@ public class DistritosModel {
 	@Column(name = "cod_distritos", nullable = false)
 	private int codDistritos;
 	
-	@Column(name = "nombre_distrito",length = 45, nullable = true)
+	@Column(name = "nombre_distrito",length = 45, nullable = false)
 	private String nombreDistrito;
 	
-	@OneToOne()
+	@ManyToOne()
 	@JoinColumn(name = "cod_provincia",nullable = false)
 	private ProvinciasModel provincia;
 

@@ -3,8 +3,6 @@ package com.aturiasrest.model.service;
 import java.util.HashMap;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.aturiasrest.model.entity.DatosPersonalesModel;
 
 public interface DatosPersonalesService {
@@ -35,12 +33,12 @@ public interface DatosPersonalesService {
 	 * @param idUsuario
 	 * @return
 	 */
-	HashMap<String, Object> srvActualizarDatosPersonales(DatosPersonalesModel datosPersonalesModel, int numeroDocumento);
+	HashMap<String, Object> srvActualizarDatosPersonales(DatosPersonalesModel datosPersonalesModel, String numeroDocumento);
 	/**
 	 * @author Jampier
 	 * @apiNote ESTE METODO ELIMINA SUCURSAL
 	 * @param idUsuario
 	 * @return
 	 */
-	HashMap<String, Object> srvEliminarDatosPersonales(int numeroDocumento);
+	HashMap<String, Object> srvEliminarDatosPersonales(String numeroDocumento);
 }

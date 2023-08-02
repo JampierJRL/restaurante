@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aturiasrest.exception.ErrorNotFoundException;
-import com.aturiasrest.model.entity.CategoriasModel;
 import com.aturiasrest.model.entity.DistritosModel;
 import com.aturiasrest.model.repository.DistritosRepository;
 import com.aturiasrest.model.service.DistritosService;
