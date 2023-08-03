@@ -96,11 +96,10 @@ public class DatosPersonalesModel {
 
 	@Column(name = "estado_persona", columnDefinition = "TINYINT(1) default 1")
 	private boolean estadoPersona;
-
-	//CAMBIAR POR DEPARTAMENTOMODEL A DISTRITOMODEL Y SU CODIGO
+	
 	@OneToOne()
-	@JoinColumn(name = "cod_departamento", nullable = false)
-	private DepartamentosModel ubigeo;
+	@JoinColumn(name = "cod_distrito", nullable = false)
+	private DistritosModel ubigeo;
 
 	public DatosPersonalesModel() {
 		super();
@@ -110,7 +109,7 @@ public class DatosPersonalesModel {
 			String sexoDescripcion, Date fechaNacimiento, String direccion, String telefono, String ruc,
 			@Email(message = "email no valido") String email, Date fechaIngreso, Date fechaEgreso, String segundoNombre,
 			String apellidoPaterno, String apellidoMaterno, String razonSocial, String celular, boolean estadoPersona,
-			DepartamentosModel ubigeo) {
+			DistritosModel ubigeo) {
 		super();
 		this.numeroDocumento = numeroDocumento;
 		this.tipoDocumento = tipoDocumento;
@@ -268,11 +267,11 @@ public class DatosPersonalesModel {
 		this.estadoPersona = estadoPersona;
 	}
 
-	public DepartamentosModel getubigeo() {
+	public DistritosModel getubigeo() {
 		return ubigeo;
 	}
 
-	public void setubigeo(DepartamentosModel ubigeo) {
+	public void setubigeo(DistritosModel ubigeo) {
 		this.ubigeo = ubigeo;
 	}
 

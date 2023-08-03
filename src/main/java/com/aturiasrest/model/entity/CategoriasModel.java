@@ -1,5 +1,7 @@
 package com.aturiasrest.model.entity;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +20,7 @@ public class CategoriasModel {
 	private int codCategoria;
 	
 	@NotBlank(message = "este campo es requerido")
+	@Length(max = 60, message = "Superaste los 60 caracteres")
 	@Column(name = "descripcion_categoria",length = 60, nullable = false)
 	private String descripcionCategoria;
 	
