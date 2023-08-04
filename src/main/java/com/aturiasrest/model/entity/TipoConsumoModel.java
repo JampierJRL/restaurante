@@ -19,7 +19,7 @@ public class TipoConsumoModel {
 	@Column(name = "cod_tipo_consumo")
 	private int codTipoconsumo;
 	
-	@NotBlank(message = "este campo es requerido")
+	@NotBlank(message = "Este campo es requerido")
 	@Length(max = 60, message = "Superaste los 60 caracteres")
 	@Column(name = "descripcion_consumo",length = 60, nullable = false)
 	private String descripcionConsumo;
