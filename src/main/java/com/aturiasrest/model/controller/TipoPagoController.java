@@ -12,37 +12,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aturiasrest.model.entity.MesaModel;
-import com.aturiasrest.model.service.MesasService;
+import com.aturiasrest.model.entity.TipoPagoModel;
+import com.aturiasrest.model.service.TipoPagoService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/service/mesas")
-public class MesasController {
+@RequestMapping("/service/tipoDePagos")
+public class TipoPagoController {
 
 	@Autowired
-	private MesasService mesasService;
-
+	private TipoPagoService tipoPagoService;
+	
 	@PostMapping("/create")
-	public ResponseEntity<?> onCrearMesa(@Valid @RequestBody MesaModel mesas) {
-		return new ResponseEntity<>(mesasService.srvGuardarMesa(mesas), HttpStatus.CREATED);
+	public ResponseEntity<?> onCrearTipoPago(@Valid @RequestBody TipoPagoModel tipoPago) {
+		return new ResponseEntity<>(tipoPagoService.srvGuardarTipoPago(tipoPago), HttpStatus.CREATED);
 	}
 
 	@PostMapping("/update/{id}")
-	public ResponseEntity<?> Mesa(@RequestBody MesaModel mesas,
-			@PathVariable("id") int codMesa) {
-		return ResponseEntity.ok().body(mesasService.srvActualizarMesa(mesas, codMesa));
+	public ResponseEntity<?> onActualizarTipoPago(@RequestBody TipoPagoModel tipoPago,
+			@PathVariable("id") int codTipoPago) {
+		return ResponseEntity.ok().body(tipoPagoService.srvActualizarTipoPago(tipoPago, codTipoPago));
 	}
 
 	@GetMapping("/list")
-	public ResponseEntity<?> onListaMesa(
+	public ResponseEntity<?> onListaTipoPago(
 			@RequestParam(name = "search", required = false, defaultValue = "") String search) {
-		return ResponseEntity.ok(mesasService.srvListaMesas(search));
+		return ResponseEntity.ok(tipoPagoService.srvListaTipoPago(search));
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<?> onEliminarMesa(@RequestParam("mesa")int codMesa) {
-		return ResponseEntity.accepted().body(mesasService.srvEliminarMesa(codMesa));
+	public ResponseEntity<?> onEliminarTipoPago(@RequestParam("tipoPago")int codTipoPago) {
+		return ResponseEntity.accepted().body(tipoPagoService.srvEliminarTipoPago(codTipoPago));
 	}
 }

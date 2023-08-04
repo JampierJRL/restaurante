@@ -12,37 +12,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aturiasrest.model.entity.MesaModel;
-import com.aturiasrest.model.service.MesasService;
+import com.aturiasrest.model.entity.OrdenModel;
+import com.aturiasrest.model.service.OrdenService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/service/mesas")
-public class MesasController {
+@RequestMapping("/service/ordenes")
+public class OrdenController {
 
 	@Autowired
-	private MesasService mesasService;
-
+	private OrdenService ordenService;
+	
 	@PostMapping("/create")
-	public ResponseEntity<?> onCrearMesa(@Valid @RequestBody MesaModel mesas) {
-		return new ResponseEntity<>(mesasService.srvGuardarMesa(mesas), HttpStatus.CREATED);
+	public ResponseEntity<?> onCrearOrden(@Valid @RequestBody OrdenModel orden) {
+		return new ResponseEntity<>(ordenService.srvGuardarOrden(orden), HttpStatus.CREATED);
 	}
 
 	@PostMapping("/update/{id}")
-	public ResponseEntity<?> Mesa(@RequestBody MesaModel mesas,
-			@PathVariable("id") int codMesa) {
-		return ResponseEntity.ok().body(mesasService.srvActualizarMesa(mesas, codMesa));
+	public ResponseEntity<?> onActualizarOrden(@RequestBody OrdenModel orden,
+			@PathVariable("id") int codOrden) {
+		return ResponseEntity.ok().body(ordenService.srvActualizarOrden(orden, codOrden));
 	}
 
 	@GetMapping("/list")
-	public ResponseEntity<?> onListaMesa(
+	public ResponseEntity<?> onListaOrden(
 			@RequestParam(name = "search", required = false, defaultValue = "") String search) {
-		return ResponseEntity.ok(mesasService.srvListaMesas(search));
+		return ResponseEntity.ok(ordenService.srvListaOrden(search));
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<?> onEliminarMesa(@RequestParam("mesa")int codMesa) {
-		return ResponseEntity.accepted().body(mesasService.srvEliminarMesa(codMesa));
+	public ResponseEntity<?> onEliminarOrden(@RequestParam("orden")int codOrden) {
+		return ResponseEntity.accepted().body(ordenService.srvEliminarOrden(codOrden));
 	}
 }

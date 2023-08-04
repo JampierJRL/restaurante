@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.aturiasrest.model.entity.DetalleOrdenModel;
-import com.aturiasrest.model.entity.OrdenModel;
 
 public interface DetalleOrdenService {
 
@@ -32,7 +31,7 @@ public interface DetalleOrdenService {
 	 * @param codDetalle
 	 * @return
 	 */
-	HashMap<String, Object> srvActualizarDetalleOrden(OrdenModel detalleOrdenModel, int codDetalle);
+	HashMap<String, Object> srvActualizarDetalleOrden(DetalleOrdenModel detalleOrdenModel, int codDetalle);
 	/**
 	 * @author Jampier
 	 * @apiNote ESTE METODO ELIMINA DETALLE ORDEN

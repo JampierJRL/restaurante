@@ -3,40 +3,40 @@ package com.aturiasrest.model.service;
 import java.util.HashMap;
 import java.util.List;
 
-import com.aturiasrest.model.entity.TipoDocumentoModel;
+import com.aturiasrest.model.entity.TipoPagoModel;
 
 public interface TipoPagoService {
 
 	/**
 	 * @autor Jampier
-	 * @apiNote ESTE METODO TIPO DOCUMENTOS
+	 * @apiNote ESTE METODO TIPO DE PAGO
 	 * @param searchs
 	 * @return
 	 */
-	List<TipoDocumentoModel> srvListaTipoDocumento(String searchs);
+	List<TipoPagoModel> srvListaTipoPago(String searchs);
 	
 	/**
 	 * @autor Jampier
-	 * @apiNote ESTE METODO GUARDA TIPO DOCUMENTOS
-	 * @param tipodocumentoModel
+	 * @apiNote ESTE METODO GUARDA TIPO DE PAGO
+	 * @param tipoPagoModel
 	 * @return
 	 */
 	//Se usa para dar estructura de respuesta del API.
-	HashMap<String, Object> srvGuardarTipoDocumento(TipoDocumentoModel tipodocumentoModel);
+	HashMap<String, Object> srvGuardarTipoPago(TipoPagoModel tipoPagoModel);
 	
 	/**
 	 * @author Jampier
-	 * @apiNote ESTE METODO ACTUALIZA TIPO DOCUMENTOS
+	 * @apiNote ESTE METODO ACTUALIZA TIPO DE PAGO
 	 * @param tipodocumentoModel
-	 * @param codTipoDocumento
+	 * @param codTipoPago
 	 * @return
 	 */
-	HashMap<String, Object> srvActualizarTipoDocumento(TipoDocumentoModel tipodocumentoModel, int codTipoDocumento);
+	HashMap<String, Object> srvActualizarTipoPago(TipoPagoModel tipoPagoModel, int codTipoPago);
 	/**
 	 * @author Jampier
-	 * @apiNote ESTE METODO ELIMINA TIPO DOCUMENTOS
-	 * @param codTipoDocumento
+	 * @apiNote ESTE METODO ELIMINA TIPO DE PAGO
+	 * @param codTipoPago
 	 * @return
 	 */
-	HashMap<String, Object> srvEliminarTipoDocumento(int codTipoDocumento);
+	HashMap<String, Object> srvEliminarTipoPago(int codTipoPago);
 }
