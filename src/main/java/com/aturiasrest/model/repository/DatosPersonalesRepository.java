@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.aturiasrest.model.entity.DatosPersonalesModel;
 
 @Repository
-public interface DatosPersonalesRepository extends JpaRepository<DatosPersonalesModel, String> {
+public interface DatosPersonalesRepository extends JpaRepository<DatosPersonalesModel, Integer> {
 
+//	#CREAR QUERY DE BUSQUEDA POR DNI  findByNumeroDocumento(String numeroDocumento);
 }

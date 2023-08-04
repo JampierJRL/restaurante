@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -24,12 +26,15 @@ import jakarta.validation.constraints.Pattern;
 public class DatosPersonalesModel {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "cod_persona", nullable = false)
+	private int codPersona;
+
 	@Min(value = 8, message = "ingrese como minimo 8 caracteres")
 	@Pattern(regexp = "^[0-9]+$", message = "solo se acepta valores numericos")
 	@Column(name = "numero_documento", length = 20, nullable = false)
 	private String numeroDocumento;
 
-	
 	@OneToOne()
 	@JoinColumn(name = "cod_tipo_documento", nullable = false)
 	private TipoDocumentoModel tipoDocumento;
@@ -96,7 +101,7 @@ public class DatosPersonalesModel {
 
 	@Column(name = "estado_persona", columnDefinition = "TINYINT(1) default 1")
 	private boolean estadoPersona;
-	
+
 	@OneToOne()
 	@JoinColumn(name = "cod_distrito", nullable = false)
 	private DistritosModel ubigeo;

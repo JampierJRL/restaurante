@@ -31,16 +31,16 @@ public class OrdenModel {
 	private String observacion;
 	
 	@ManyToOne
-	@JoinColumn(name = "numero_documento", nullable = false)
+	@JoinColumn(name = "cod_persona", nullable = false)
 	private DatosPersonalesModel datosPersonales;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "cod_tipo_pago", nullable = false)
 	private TipoPagoModel tipoPago;
 	
-	@OneToOne
-	@JoinColumn(name = "cod_mesa", nullable = false)
-	private MesaModel mesa;
+	@ManyToOne
+	@JoinColumn(name = "cod_tipo_consumo", nullable = false)
+	private TipoConsumoModel tipoConsumo;
 	
 	@Column(name = "sub_total", columnDefinition = "DECIMAL(18,2)")
 	private float subTotal;
@@ -50,23 +50,29 @@ public class OrdenModel {
 	
 	@Column(name = "monto_total", columnDefinition = "DECIMAL(18,2)")
 	private float montoTotal;
+	
+	@OneToOne
+	@JoinColumn(name = "cod_usuario", nullable = false)
+	private UsuarioModel userLogin ;
 
 	public OrdenModel() {
 		super();
 	}
 
 	public OrdenModel(int codOrden, Date fechaOrden, String observacion, DatosPersonalesModel datosPersonales,
-			TipoPagoModel tipoPago, MesaModel mesa, float subTotal, float igv, float montoTotal) {
+			TipoPagoModel tipoPago, TipoConsumoModel tipoConsumo, float subTotal, float igv, float montoTotal,
+			UsuarioModel userLogin) {
 		super();
 		this.codOrden = codOrden;
 		this.fechaOrden = fechaOrden;
 		this.observacion = observacion;
 		this.datosPersonales = datosPersonales;
 		this.tipoPago = tipoPago;
-		this.mesa = mesa;
+		this.tipoConsumo = tipoConsumo;
 		this.subTotal = subTotal;
 		this.igv = igv;
 		this.montoTotal = montoTotal;
+		this.userLogin = userLogin;
 	}
 
 	public int getCodOrden() {
@@ -109,12 +115,12 @@ public class OrdenModel {
 		this.tipoPago = tipoPago;
 	}
 
-	public MesaModel getMesa() {
-		return mesa;
+	public TipoConsumoModel getTipoConsumo() {
+		return tipoConsumo;
 	}
 
-	public void setMesa(MesaModel mesa) {
-		this.mesa = mesa;
+	public void setTipoConsumo(TipoConsumoModel tipoConsumo) {
+		this.tipoConsumo = tipoConsumo;
 	}
 
 	public float getSubTotal() {
@@ -141,13 +147,19 @@ public class OrdenModel {
 		this.montoTotal = montoTotal;
 	}
 
+	public UsuarioModel getUserLogin() {
+		return userLogin;
+	}
+
+	public void setUserLogin(UsuarioModel userLogin) {
+		this.userLogin = userLogin;
+	}
+
 	@Override
 	public String toString() {
 		return "OrdenModel [codOrden=" + codOrden + ", fechaOrden=" + fechaOrden + ", observacion=" + observacion
-				+ ", datosPersonales=" + datosPersonales + ", tipoPago=" + tipoPago + ", mesa=" + mesa + ", subTotal="
-				+ subTotal + ", igv=" + igv + ", montoTotal=" + montoTotal + "]";
+				+ ", datosPersonales=" + datosPersonales + ", tipoPago=" + tipoPago + ", tipoConsumo=" + tipoConsumo
+				+ ", subTotal=" + subTotal + ", igv=" + igv + ", montoTotal=" + montoTotal + ", userLogin=" + userLogin
+				+ "]";
 	}
-	
-	
-
 }

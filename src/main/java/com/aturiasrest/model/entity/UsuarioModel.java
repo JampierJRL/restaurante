@@ -24,7 +24,7 @@ public class UsuarioModel {
 	private int codUsuario;
 	
 	@OneToOne()
-	@JoinColumn(name = "numero_documento", nullable = false)
+	@JoinColumn(name = "cod_persona", nullable = false)
 	private DatosPersonalesModel persona;
 	
 	@Email

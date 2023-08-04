@@ -31,7 +31,7 @@ public class DatosPersonalesController {
 
 	@PostMapping("/update/{id}")
 	public ResponseEntity<?> onActualizarDatosPersonales(@RequestBody DatosPersonalesModel datosPersonales,
-			@PathVariable("id") String numeroDocumento) {
+			@PathVariable("id") int numeroDocumento) {
 		return ResponseEntity.ok().body(datosPersonalesService.srvActualizarDatosPersonales(datosPersonales, numeroDocumento));
 	}
 
@@ -42,7 +42,7 @@ public class DatosPersonalesController {
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<?> onEliminarDatosPersonales(@RequestParam("datosPersonales")String numeroDocumento) {
+	public ResponseEntity<?> onEliminarDatosPersonales(@RequestParam("datosPersonales")int numeroDocumento) {
 		return ResponseEntity.accepted().body(datosPersonalesService.srvEliminarDatosPersonales(numeroDocumento));
 	}
 }

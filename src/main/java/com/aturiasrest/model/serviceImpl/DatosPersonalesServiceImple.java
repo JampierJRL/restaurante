@@ -33,6 +33,8 @@ public class DatosPersonalesServiceImple implements DatosPersonalesService {
 	public HashMap<String, Object> srvGuardarDatosPersonales(DatosPersonalesModel datosPersonalesModel) {
 		HashMap<String, Object> response = new HashMap<>();
 		try {
+//			#BUSCAR ANTES DE GUARDAR QUE NO EXISTA ESA PERSONA CON EL MISMO DNI
+			
 			datosPersonalesRepository.save(datosPersonalesModel);
 			response.put("message", "Datos Personales creada");
 		} catch (Exception e) {
@@ -43,7 +45,7 @@ public class DatosPersonalesServiceImple implements DatosPersonalesService {
 
 	@Override
 	public HashMap<String, Object> srvActualizarDatosPersonales(DatosPersonalesModel datosPersonalesModel,
-			String numeroDocumento) {
+			int numeroDocumento) {
 		HashMap<String, Object> response = new HashMap<>();
 		try {
 			datosPersonalesRepository.findById(numeroDocumento)
@@ -57,7 +59,7 @@ public class DatosPersonalesServiceImple implements DatosPersonalesService {
 	}
 
 	@Override
-	public HashMap<String, Object> srvEliminarDatosPersonales(String numeroDocumento) {
+	public HashMap<String, Object> srvEliminarDatosPersonales(int numeroDocumento) {
 		HashMap<String, Object> response = new HashMap<>();
 		try {
 			datosPersonalesRepository.deleteById(numeroDocumento);

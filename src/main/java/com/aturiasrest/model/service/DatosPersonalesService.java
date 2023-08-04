@@ -33,12 +33,12 @@ public interface DatosPersonalesService {
 	 * @param idUsuario
 	 * @return
 	 */
-	HashMap<String, Object> srvActualizarDatosPersonales(DatosPersonalesModel datosPersonalesModel, String numeroDocumento);
+	HashMap<String, Object> srvActualizarDatosPersonales(DatosPersonalesModel datosPersonalesModel, int numeroDocumento);
 	/**
 	 * @author Jampier
 	 * @apiNote ESTE METODO ELIMINA SUCURSAL
 	 * @param idUsuario
 	 * @return
 	 */
-	HashMap<String, Object> srvEliminarDatosPersonales(String numeroDocumento);
+	HashMap<String, Object> srvEliminarDatosPersonales(int numeroDocumento);
 }
