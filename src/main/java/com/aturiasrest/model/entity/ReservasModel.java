@@ -1,6 +1,5 @@
 package com.aturiasrest.model.entity;
 
-import java.time.LocalTime;
 import java.util.Date;
 
 
@@ -32,8 +31,8 @@ public class ReservasModel {
 	
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", locale = "es-PE", timezone = "America/Lima")
-	@Column(name = "hora_reserva")
-	private LocalTime horaReserva;
+	@Column(name = "hora_reserva", columnDefinition = "TIME", nullable = false)
+	private Date horaReserva;
 	
 	@Column(name = "observacion", columnDefinition = "TEXT")
 	private String observacion;
@@ -49,7 +48,7 @@ public class ReservasModel {
 		super();
 	}
 
-	public ReservasModel(int codPago, @NotNull(message = "requerido") Date fechaReserva, LocalTime horaReserva,
+	public ReservasModel(int codPago, @NotNull(message = "requerido") Date fechaReserva, Date horaReserva,
 			String observacion, boolean estadoReserva, MesaModel mesa) {
 		super();
 		this.codPago = codPago;
@@ -76,11 +75,11 @@ public class ReservasModel {
 		this.fechaReserva = fechaReserva;
 	}
 
-	public LocalTime getHoraReserva() {
+	public Date getHoraReserva() {
 		return horaReserva;
 	}
 
-	public void setHoraReserva(LocalTime horaReserva) {
+	public void setHoraReserva(Date horaReserva) {
 		this.horaReserva = horaReserva;
 	}
 
@@ -114,5 +113,7 @@ public class ReservasModel {
 				+ ", observacion=" + observacion + ", estadoReserva=" + estadoReserva + ", mesa=" + mesa + "]";
 	}
 
+	
+	
 	
 }
