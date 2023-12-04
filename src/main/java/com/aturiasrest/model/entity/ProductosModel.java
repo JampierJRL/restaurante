@@ -33,8 +33,8 @@ public class ProductosModel {
 	@Column(name = "stock_almacen", nullable = false)
 	private int stockAlmacen;
 	
-	@Column(name = "obervacion", columnDefinition = "TEXT")
-	private String obervacion;
+	@Column(name = "observacion", columnDefinition = "TEXT")
+	private String observacion;
 	
 	@Column(name = "estado", columnDefinition = "TINYINT default 1")
 	private boolean estado;
@@ -46,9 +46,10 @@ public class ProductosModel {
 	public ProductosModel() {
 		super();
 	}
+	
 
 	public ProductosModel(int codProducto, String descripcionProducto, Double precioCompra, Double precioVenta,
-			int stockCompra, int stockAlmacen, String obervacion, boolean estado, CategoriasModel categoria) {
+			int stockCompra, int stockAlmacen, String observacion, boolean estado, CategoriasModel categoria) {
 		super();
 		this.codProducto = codProducto;
 		this.descripcionProducto = descripcionProducto;
@@ -56,10 +57,12 @@ public class ProductosModel {
 		this.precioVenta = precioVenta;
 		this.stockCompra = stockCompra;
 		this.stockAlmacen = stockAlmacen;
-		this.obervacion = obervacion;
+		this.observacion = observacion;
 		this.estado = estado;
 		this.categoria = categoria;
 	}
+
+
 
 	public int getCodProducto() {
 		return codProducto;
@@ -109,12 +112,12 @@ public class ProductosModel {
 		this.stockAlmacen = stockAlmacen;
 	}
 
-	public String getObervacion() {
-		return obervacion;
+	public String getObservacion() {
+		return observacion;
 	}
 
-	public void setObervacion(String obervacion) {
-		this.obervacion = obervacion;
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
 	}
 
 	public boolean isEstado() {
@@ -125,11 +128,11 @@ public class ProductosModel {
 		this.estado = estado;
 	}
 
-	public CategoriasModel getcategoria() {
+	public CategoriasModel getCategoria() {
 		return categoria;
 	}
 
-	public void setcategoria(CategoriasModel categoria) {
+	public void setCategoria(CategoriasModel categoria) {
 		this.categoria = categoria;
 	}
 
@@ -137,8 +140,10 @@ public class ProductosModel {
 	public String toString() {
 		return "ProductosModel [codProducto=" + codProducto + ", descripcionProducto=" + descripcionProducto
 				+ ", precioCompra=" + precioCompra + ", precioVenta=" + precioVenta + ", stockCompra=" + stockCompra
-				+ ", stockAlmacen=" + stockAlmacen + ", obervacion=" + obervacion + ", estado=" + estado
+				+ ", stockAlmacen=" + stockAlmacen + ", observacion=" + observacion + ", estado=" + estado
 				+ ", categoria=" + categoria + "]";
 	}
+
+	
 	
 }

@@ -48,7 +48,7 @@ public class Conection {
 		driver.setUrl(
 				"jdbc:mysql://localhost:3306/dbasturiosrest?useSSL=false&serverTimezone=America/Lima&allowPublicKeyRetrieval=true");
 		driver.setUsername("root");
-		driver.setPassword("MOREinga02054$$");
+		driver.setPassword("janpier159");
 
 		return driver;
 	}
