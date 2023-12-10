@@ -15,37 +15,41 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aturiasrest.model.entity.MesaModel;
+import com.aturiasrest.model.entity.ReservasModel;
+import com.aturiasrest.model.entity.TipoComprobanteModel;
 import com.aturiasrest.model.service.MesasService;
+import com.aturiasrest.model.service.ReservasService;
+import com.aturiasrest.model.service.TipoComprobanteService;
 
 import jakarta.validation.Valid;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
-@RequestMapping("/service/mesas")
-public class MesasController {
+@RequestMapping("/service/reservas")
+public class ReservasController {
 
 	@Autowired
-	private MesasService mesasService;
+	private ReservasService reservasService;
 
 	@PostMapping("/create")
-	public ResponseEntity<?> onCrearMesa(@Valid @RequestBody MesaModel mesas) {
-		return new ResponseEntity<>(mesasService.srvGuardarMesa(mesas), HttpStatus.CREATED);
+	public ResponseEntity<?> onCrearReserva(@Valid @RequestBody ReservasModel reserva) {
+		return new ResponseEntity<>(reservasService.srvGuardarReservas(reserva), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> onActualizarMesa(@RequestBody MesaModel mesas,
-			@PathVariable("id") int codMesa) {
-		return ResponseEntity.ok().body(mesasService.srvActualizarMesa(mesas, codMesa));
+	public ResponseEntity<?> onActualizarReserva(@RequestBody ReservasModel reserva,
+			@PathVariable("id") int codReserva) {
+		return ResponseEntity.ok().body(reservasService.srvActualizarReservas(reserva, codReserva));
 	}
 
 	@GetMapping("/list")
-	public ResponseEntity<?> onListaMesa(
+	public ResponseEntity<?> onListaReserva(
 			@RequestParam(name = "search", required = false, defaultValue = "") String search) {
-		return ResponseEntity.ok(mesasService.srvListaMesas(search));
+		return ResponseEntity.ok(reservasService.srvListarReservas(search));
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<?> onEliminarMesa(@RequestParam("mesa")int codMesa) {
-		return ResponseEntity.accepted().body(mesasService.srvEliminarMesa(codMesa));
+	public ResponseEntity<?> onEliminarReserva(@RequestParam("reserva")int codReserva) {
+		return ResponseEntity.accepted().body(reservasService.srvEliminarReservas(codReserva));
 	}
 }

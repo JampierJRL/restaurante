@@ -15,37 +15,39 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aturiasrest.model.entity.MesaModel;
+import com.aturiasrest.model.entity.TipoComprobanteModel;
 import com.aturiasrest.model.service.MesasService;
+import com.aturiasrest.model.service.TipoComprobanteService;
 
 import jakarta.validation.Valid;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
-@RequestMapping("/service/mesas")
-public class MesasController {
+@RequestMapping("/service/tipoComprobante")
+public class TipoComprobanteController {
 
 	@Autowired
-	private MesasService mesasService;
+	private TipoComprobanteService tipoComprobanteService;
 
 	@PostMapping("/create")
-	public ResponseEntity<?> onCrearMesa(@Valid @RequestBody MesaModel mesas) {
-		return new ResponseEntity<>(mesasService.srvGuardarMesa(mesas), HttpStatus.CREATED);
+	public ResponseEntity<?> onCrearTipoComprobante(@Valid @RequestBody TipoComprobanteModel tipoComprobante) {
+		return new ResponseEntity<>(tipoComprobanteService.srvGuardarTipoComprobante(tipoComprobante), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> onActualizarMesa(@RequestBody MesaModel mesas,
-			@PathVariable("id") int codMesa) {
-		return ResponseEntity.ok().body(mesasService.srvActualizarMesa(mesas, codMesa));
+	public ResponseEntity<?> onActualizarTipoComprobante(@RequestBody TipoComprobanteModel tipoComprobante,
+			@PathVariable("id") int codTipoComprobante) {
+		return ResponseEntity.ok().body(tipoComprobanteService.srvActualizarTipoComprobante(tipoComprobante, codTipoComprobante));
 	}
 
 	@GetMapping("/list")
-	public ResponseEntity<?> onListaMesa(
+	public ResponseEntity<?> onListaTipoComprobante(
 			@RequestParam(name = "search", required = false, defaultValue = "") String search) {
-		return ResponseEntity.ok(mesasService.srvListaMesas(search));
+		return ResponseEntity.ok(tipoComprobanteService.srvListaTipoComprobante(search));
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<?> onEliminarMesa(@RequestParam("mesa")int codMesa) {
-		return ResponseEntity.accepted().body(mesasService.srvEliminarMesa(codMesa));
+	public ResponseEntity<?> onEliminarTipoComprobante(@RequestParam("tipoComprobante")int codMesa) {
+		return ResponseEntity.accepted().body(tipoComprobanteService.srvEliminarTipoComprobante(codMesa));
 	}
 }

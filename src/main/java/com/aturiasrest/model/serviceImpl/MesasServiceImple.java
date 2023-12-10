@@ -45,9 +45,9 @@ public class MesasServiceImple implements MesasService {
 		HashMap<String, Object> response = new HashMap<>();
 		try {
 			mesaRepository.findById(codMesa)
-					.orElseThrow(() -> new ErrorNotFoundException("No se encontro mesa seleccionada"));
+					.orElseThrow(() -> new ErrorNotFoundException("No se encontro Mesa seleccionada"));
 			mesaRepository.save(mesaModel);
-			response.put("message", "Datos Personales modificada");
+			response.put("message", "Mesa modificada");
 		} catch (Exception e) {
 			throw e;
 		}

@@ -15,37 +15,39 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aturiasrest.model.entity.MesaModel;
+import com.aturiasrest.model.entity.TipoConsumoModel;
 import com.aturiasrest.model.service.MesasService;
+import com.aturiasrest.model.service.TipoConsumoService;
 
 import jakarta.validation.Valid;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
-@RequestMapping("/service/mesas")
-public class MesasController {
+@RequestMapping("/service/tipoConsumo")
+public class TipoConsumoController {
 
 	@Autowired
-	private MesasService mesasService;
+	private TipoConsumoService tipoConsumoService;
 
 	@PostMapping("/create")
-	public ResponseEntity<?> onCrearMesa(@Valid @RequestBody MesaModel mesas) {
-		return new ResponseEntity<>(mesasService.srvGuardarMesa(mesas), HttpStatus.CREATED);
+	public ResponseEntity<?> onCrearTipoConsumo(@Valid @RequestBody TipoConsumoModel tipoConsumo) {
+		return new ResponseEntity<>(tipoConsumoService.srvGuardarTipoConsumo(tipoConsumo), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> onActualizarMesa(@RequestBody MesaModel mesas,
-			@PathVariable("id") int codMesa) {
-		return ResponseEntity.ok().body(mesasService.srvActualizarMesa(mesas, codMesa));
+	public ResponseEntity<?> onActualizarTipoConsumo(@RequestBody TipoConsumoModel tipoConsumo,
+			@PathVariable("id") int codTIpoConsumo) {
+		return ResponseEntity.ok().body(tipoConsumoService.srvActualizarTipoConsumo(tipoConsumo, codTIpoConsumo));
 	}
 
 	@GetMapping("/list")
-	public ResponseEntity<?> onListaMesa(
+	public ResponseEntity<?> onListaTipoConsumo(
 			@RequestParam(name = "search", required = false, defaultValue = "") String search) {
-		return ResponseEntity.ok(mesasService.srvListaMesas(search));
+		return ResponseEntity.ok(tipoConsumoService.srvListaTipoConsumo(search));
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<?> onEliminarMesa(@RequestParam("mesa")int codMesa) {
-		return ResponseEntity.accepted().body(mesasService.srvEliminarMesa(codMesa));
+	public ResponseEntity<?> onEliminarTipoConsumo(@RequestParam("tipoConsumo")int codTIpoConsumo) {
+		return ResponseEntity.accepted().body(tipoConsumoService.srvEliminarTipoConsumo(codTIpoConsumo));
 	}
 }
