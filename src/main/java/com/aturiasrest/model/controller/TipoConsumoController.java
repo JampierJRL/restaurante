@@ -45,7 +45,7 @@ public class TipoConsumoController {
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<?> onEliminarTipoConsumo(@RequestParam("tipoConsumo")int codTIpoConsumo) {
+	public ResponseEntity<?> onEliminarTipoConsumo(@RequestParam("tipoconsumo")int codTIpoConsumo) {
 		return ResponseEntity.accepted().body(tipoConsumoService.srvEliminarTipoConsumo(codTIpoConsumo));
 	}
 }
