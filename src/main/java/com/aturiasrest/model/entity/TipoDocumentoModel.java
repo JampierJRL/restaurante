@@ -16,7 +16,7 @@ public class TipoDocumentoModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotEmpty(message = "Oblogatorio")
 	@Column(name = "cod_tipo_documento")
-	private int codTipoDocumento;
+	private int codTipodocumento;
 	
 	@Column(name = "descripcion_documento", length = 45, nullable = false)
 	private String descripcionDocumento;
@@ -25,18 +25,18 @@ public class TipoDocumentoModel {
 		super();
 	}
 
-	public TipoDocumentoModel(int codTipoDocumento, String descripcionDocumento) {
+	public TipoDocumentoModel(@NotEmpty(message = "Oblogatorio") int codTipodocumento, String descripcionDocumento) {
 		super();
-		this.codTipoDocumento = codTipoDocumento;
+		this.codTipodocumento = codTipodocumento;
 		this.descripcionDocumento = descripcionDocumento;
 	}
 
-	public int getCodTipoDocumento() {
-		return codTipoDocumento;
+	public int getCodTipodocumento() {
+		return codTipodocumento;
 	}
 
-	public void setCodTipoDocumento(int codTipoDocumento) {
-		this.codTipoDocumento = codTipoDocumento;
+	public void setCodTipodocumento(int codTipodocumento) {
+		this.codTipodocumento = codTipodocumento;
 	}
 
 	public String getDescripcionDocumento() {
@@ -49,10 +49,9 @@ public class TipoDocumentoModel {
 
 	@Override
 	public String toString() {
-		return "TipoDocumentoModel [codTipoDocumento=" + codTipoDocumento + ", descripcionDocumento="
+		return "TipoDocumentoModel [codTipodocumento=" + codTipodocumento + ", descripcionDocumento="
 				+ descripcionDocumento + "]";
 	}
-	
-	
+
 	
 }

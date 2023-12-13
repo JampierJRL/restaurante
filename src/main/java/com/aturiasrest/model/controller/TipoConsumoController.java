@@ -34,8 +34,8 @@ public class TipoConsumoController {
 
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?> onActualizarTipoConsumo(@RequestBody TipoConsumoModel tipoConsumo,
-			@PathVariable("id") int codTIpoConsumo) {
-		return ResponseEntity.ok().body(tipoConsumoService.srvActualizarTipoConsumo(tipoConsumo, codTIpoConsumo));
+			@PathVariable("id") int codTipoConsumo) {
+		return ResponseEntity.ok().body(tipoConsumoService.srvActualizarTipoConsumo(tipoConsumo, codTipoConsumo));
 	}
 
 	@GetMapping("/list")

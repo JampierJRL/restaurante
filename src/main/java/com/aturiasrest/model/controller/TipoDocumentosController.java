@@ -44,7 +44,7 @@ public class TipoDocumentosController {
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<?> onEliminarTipoDocumento(@RequestParam("tipoDocumento")int codTipoDocumento) {
+	public ResponseEntity<?> onEliminarTipoDocumento(@RequestParam("tipodocumento")int codTipoDocumento) {
 		return ResponseEntity.accepted().body(tipoDocumentoService.srvEliminarTipoDocumento(codTipoDocumento));
 	}
 }
