@@ -23,7 +23,7 @@ import jakarta.validation.Valid;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
-@RequestMapping("/service/tipoComprobante")
+@RequestMapping("/service/tipocomprobantes")
 public class TipoComprobanteController {
 
 	@Autowired
