@@ -18,7 +18,7 @@ public class DepartamentosServiceImple implements DepartamentosService {
 	private DepartamentosRepository departamentosRepository;
 	
 	@Override
-	public List<DepartamentosModel> srvListaDepartamentos(String searchs) {
+	public List<DepartamentosModel> srvListaDepartamentos() {
 		List<DepartamentosModel> lista = new ArrayList<>();
 		try {
 //			 SELECT * FROM TB_USUARIO

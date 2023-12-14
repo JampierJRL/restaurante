@@ -14,7 +14,7 @@ public interface DepartamentosService {
 	 * @param password
 	 * @return
 	 */
-	List<DepartamentosModel> srvListaDepartamentos(String searchs);
+	List<DepartamentosModel> srvListaDepartamentos();
 	
 	/**
 	 * @autor Jampier
