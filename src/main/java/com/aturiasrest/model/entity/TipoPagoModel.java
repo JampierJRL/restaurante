@@ -17,7 +17,7 @@ public class TipoPagoModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cod_tipo_pago", nullable = false)
-	private int codPago;
+	private int codTipoPago;
 	
 	@NotEmpty(message = "Este campo es requerido")
 	@Length(max = 200, message = "Supera los 200 caracteres")
@@ -31,19 +31,21 @@ public class TipoPagoModel {
 		super();
 	}
 
-	public TipoPagoModel(int codPago, String descripcion, boolean estado) {
+	public TipoPagoModel(int codTipoPago,
+			@NotEmpty(message = "Este campo es requerido") @Length(max = 200, message = "Supera los 200 caracteres") String descripcion,
+			boolean estado) {
 		super();
-		this.codPago = codPago;
+		this.codTipoPago = codTipoPago;
 		this.descripcion = descripcion;
 		this.estado = estado;
 	}
 
-	public int getCodPago() {
-		return codPago;
+	public int getCodTipoPago() {
+		return codTipoPago;
 	}
 
-	public void setCodPago(int codPago) {
-		this.codPago = codPago;
+	public void setCodTipoPago(int codTipoPago) {
+		this.codTipoPago = codTipoPago;
 	}
 
 	public String getDescripcion() {
@@ -64,8 +66,10 @@ public class TipoPagoModel {
 
 	@Override
 	public String toString() {
-		return "TipoPagoModel [codPago=" + codPago + ", descripcion=" + descripcion + ", estado=" + estado + "]";
+		return "TipoPagoModel [codTipoPago=" + codTipoPago + ", descripcion=" + descripcion + ", estado=" + estado
+				+ "]";
 	}
+
 	
 	
 }
