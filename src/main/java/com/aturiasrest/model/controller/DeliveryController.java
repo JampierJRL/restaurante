@@ -8,14 +8,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aturiasrest.model.entity.DatosPersonalesModel;
 import com.aturiasrest.model.entity.DeliveryModel;
-import com.aturiasrest.model.service.DatosPersonalesService;
 import com.aturiasrest.model.service.DeliveryService;
 
 import jakarta.validation.Valid;
@@ -33,7 +32,7 @@ public class DeliveryController {
 		return new ResponseEntity<>(deliveryService.srvGuardarDelivery(deliveryModel), HttpStatus.CREATED);
 	}
 
-	@PostMapping("/update/{id}")
+	@PutMapping("/update/{id}")
 	public ResponseEntity<?> onActualizarDelivery(@RequestBody DeliveryModel deliveryModel,
 			@PathVariable("id") int codDelivery) {
 		return ResponseEntity.ok().body(deliveryService.srvActualizarDelivery(deliveryModel, codDelivery));

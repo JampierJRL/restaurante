@@ -8,11 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aturiasrest.exception.ErrorNotFoundException;
-import com.aturiasrest.model.entity.MesaModel;
 import com.aturiasrest.model.entity.TipoConsumoModel;
-import com.aturiasrest.model.repository.MesaRepository;
 import com.aturiasrest.model.repository.TipoConsumoRepository;
-import com.aturiasrest.model.service.MesasService;
 import com.aturiasrest.model.service.TipoConsumoService;
 
 @Service

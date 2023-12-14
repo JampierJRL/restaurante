@@ -3,7 +3,6 @@ package com.aturiasrest.model.service;
 import java.util.HashMap;
 import java.util.List;
 
-import com.aturiasrest.model.entity.DatosPersonalesModel;
 import com.aturiasrest.model.entity.DeliveryModel;
 
 public interface DeliveryService {

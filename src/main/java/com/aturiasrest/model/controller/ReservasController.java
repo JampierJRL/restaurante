@@ -14,12 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aturiasrest.model.entity.MesaModel;
 import com.aturiasrest.model.entity.ReservasModel;
-import com.aturiasrest.model.entity.TipoComprobanteModel;
-import com.aturiasrest.model.service.MesasService;
 import com.aturiasrest.model.service.ReservasService;
-import com.aturiasrest.model.service.TipoComprobanteService;
 
 import jakarta.validation.Valid;
 
