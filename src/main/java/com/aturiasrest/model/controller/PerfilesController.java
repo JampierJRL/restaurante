@@ -46,7 +46,7 @@ public class PerfilesController {
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<?> onEliminarPerfil(@RequestParam("perfil")int codPerfil) {
+	public ResponseEntity<?> onEliminarPerfil(@RequestParam("perfiles")int codPerfil) {
 		return ResponseEntity.accepted().body(perfilesService.srvEliminarPerfil(codPerfil));
 	}
 }
