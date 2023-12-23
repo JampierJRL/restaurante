@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,16 +36,12 @@ public class DatosPersonalesModel {
 	@Column(name = "numero_documento", length = 20, nullable = false)
 	private String numeroDocumento;
 
-	@OneToOne()
-	@JoinColumn(name = "cod_tipo_documento", nullable = false)
-	private TipoDocumentoModel tipoDocumento;
-
 	@NotEmpty(message = "Este campo es requerido")
 	@Length(max = 55, message = "Supera los 55 caracteres")
 	@Column(name = "primer_nombre", length = 55, nullable = false)
 	private String primerNombre;
 
-	@Max(value = 9, message = "Ingrese 9 digitos")
+
 	@Column(name = "sexo_descripcion", length = 9, nullable = true)
 	private String sexoDescripcion;
 
@@ -75,7 +72,7 @@ public class DatosPersonalesModel {
 	@Column(name = "fecha_ingreso", columnDefinition = "DATE", nullable = false)
 	private Date fechaIngreso;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", locale = "es-PE", timezone = "America/Lima")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "es-PE", timezone = "America/Lima")
 	@Column(name = "fecha_egreso")
 	private Date fechaEgreso;
 
@@ -103,21 +100,33 @@ public class DatosPersonalesModel {
 	private boolean estadoPersona;
 
 	@OneToOne()
-	@JoinColumn(name = "cod_distrito", nullable = false)
+	@JoinColumn(name = "cod_tipo_documento", nullable = false)
+	private TipoDocumentoModel tipoDocumento;
+	
+	@OneToOne()
+	@JoinColumn(name = "cod_distritos", nullable = false)
 	private DistritosModel ubigeo;
 
 	public DatosPersonalesModel() {
 		super();
 	}
 
-	public DatosPersonalesModel(String numeroDocumento, TipoDocumentoModel tipoDocumento, String primerNombre,
-			String sexoDescripcion, Date fechaNacimiento, String direccion, String telefono, String ruc,
-			@Email(message = "email no valido") String email, Date fechaIngreso, Date fechaEgreso, String segundoNombre,
-			String apellidoPaterno, String apellidoMaterno, String razonSocial, String celular, boolean estadoPersona,
-			DistritosModel ubigeo) {
+	public DatosPersonalesModel(int codPersona,
+			@Min(value = 8, message = "ingrese como minimo 8 caracteres") @Pattern(regexp = "^[0-9]+$", message = "solo se acepta valores numericos") String numeroDocumento,
+			@NotEmpty(message = "Este campo es requerido") @Length(max = 55, message = "Supera los 55 caracteres") String primerNombre,
+			@Max(value = 9, message = "Ingrese 9 digitos") String sexoDescripcion,
+			@NotNull(message = "requerido") Date fechaNacimiento, String direccion,
+			@Pattern(regexp = "^[0-9 ]+$") String telefono,
+			@Length(max = 15, message = "supera los 15 caracteres") String ruc,
+			@NotEmpty(message = "este campo es reqerido") @Email(message = "email no valido") @Length(max = 85, message = "este campo supera los 85 caracteres") String email,
+			@NotNull(message = "requerido") Date fechaIngreso, Date fechaEgreso, String segundoNombre,
+			@NotEmpty(message = "Este campo es requerido") @Length(max = 40, message = "Supera los 40 caracteres") String apellidoPaterno,
+			@NotEmpty(message = "Este campo es requerido") @Length(max = 40, message = "Supera los 40 caracteres") String apellidoMaterno,
+			String razonSocial, @Pattern(regexp = "^[0-9 +]+$") String celular, boolean estadoPersona,
+			TipoDocumentoModel tipoDocumento, DistritosModel ubigeo) {
 		super();
+		this.codPersona = codPersona;
 		this.numeroDocumento = numeroDocumento;
-		this.tipoDocumento = tipoDocumento;
 		this.primerNombre = primerNombre;
 		this.sexoDescripcion = sexoDescripcion;
 		this.fechaNacimiento = fechaNacimiento;
@@ -133,7 +142,16 @@ public class DatosPersonalesModel {
 		this.razonSocial = razonSocial;
 		this.celular = celular;
 		this.estadoPersona = estadoPersona;
+		this.tipoDocumento = tipoDocumento;
 		this.ubigeo = ubigeo;
+	}
+
+	public int getCodPersona() {
+		return codPersona;
+	}
+
+	public void setCodPersona(int codPersona) {
+		this.codPersona = codPersona;
 	}
 
 	public String getNumeroDocumento() {
@@ -142,14 +160,6 @@ public class DatosPersonalesModel {
 
 	public void setNumeroDocumento(String numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
-	}
-
-	public TipoDocumentoModel gettipoDocumento() {
-		return tipoDocumento;
-	}
-
-	public void settipoDocumento(TipoDocumentoModel tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
 	}
 
 	public String getPrimerNombre() {
@@ -272,22 +282,32 @@ public class DatosPersonalesModel {
 		this.estadoPersona = estadoPersona;
 	}
 
-	public DistritosModel getubigeo() {
+	public TipoDocumentoModel getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(TipoDocumentoModel tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
+	public DistritosModel getUbigeo() {
 		return ubigeo;
 	}
 
-	public void setubigeo(DistritosModel ubigeo) {
+	public void setUbigeo(DistritosModel ubigeo) {
 		this.ubigeo = ubigeo;
 	}
 
 	@Override
 	public String toString() {
-		return "DatosPersonalesModel [numeroDocumento=" + numeroDocumento + ", tipoDocumento=" + tipoDocumento
+		return "DatosPersonalesModel [codPersona=" + codPersona + ", numeroDocumento=" + numeroDocumento
 				+ ", primerNombre=" + primerNombre + ", sexoDescripcion=" + sexoDescripcion + ", fechaNacimiento="
 				+ fechaNacimiento + ", direccion=" + direccion + ", telefono=" + telefono + ", ruc=" + ruc + ", email="
 				+ email + ", fechaIngreso=" + fechaIngreso + ", fechaEgreso=" + fechaEgreso + ", segundoNombre="
 				+ segundoNombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno
 				+ ", razonSocial=" + razonSocial + ", celular=" + celular + ", estadoPersona=" + estadoPersona
-				+ ", ubigeo=" + ubigeo + "]";
+				+ ", tipoDocumento=" + tipoDocumento + ", ubigeo=" + ubigeo + "]";
 	}
+
+	
 }

@@ -53,6 +53,7 @@ public class UbigeoServiceImple implements UbigeoService {
 	@Override
 	public List<DistritosModel> srvListaDistritos(int codProvincia) {
 		List<DistritosModel> lista = new ArrayList<>();
+		System.out.println(codProvincia);
 		try {
 			lista = distritosRepository.findByProvinciaCodProvincia(codProvincia);
 		} catch (Exception e) {

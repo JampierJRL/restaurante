@@ -21,7 +21,7 @@ public class DistritosServiceImple implements DistritosService {
 	public List<DistritosModel> srvListaDistritos(int idprovincia) {
 		List<DistritosModel> lista = new ArrayList<>();
 		try {
-			lista = distritosRepository.findAll();
+			lista = distritosRepository.findByProvinciaCodProvincia(idprovincia);
 		} catch (Exception e) {
 			throw e;
 		}

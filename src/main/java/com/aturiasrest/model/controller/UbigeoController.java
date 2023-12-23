@@ -51,8 +51,9 @@ public class UbigeoController {
 	
 	@GetMapping("/list/distritos/{id}")
 	public ResponseEntity<?> onListaDistritos(
-			@PathVariable("id") int codDistritos) {
-		return ResponseEntity.ok(srvDistritos.srvListaDistritos(codDistritos));
+			@PathVariable("id") int codProvincia) {
+		return ResponseEntity.ok(srvDistritos.srvListaDistritos(codProvincia));
+		
 	}
 	
 }

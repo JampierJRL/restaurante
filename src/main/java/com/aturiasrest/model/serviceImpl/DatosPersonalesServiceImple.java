@@ -34,7 +34,7 @@ public class DatosPersonalesServiceImple implements DatosPersonalesService {
 		HashMap<String, Object> response = new HashMap<>();
 		try {
 //			#BUSCAR ANTES DE GUARDAR QUE NO EXISTA ESA PERSONA CON EL MISMO DNI
-			
+			System.err.println(datosPersonalesModel);
 			datosPersonalesRepository.save(datosPersonalesModel);
 			response.put("message", "Datos Personales creada");
 		} catch (Exception e) {

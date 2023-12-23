@@ -31,7 +31,7 @@ public class SucursalesModel {
 	private String ruc;
 	
 	@OneToOne()
-	@JoinColumn(name = "cod_departamento", nullable = false)
+	@JoinColumn(name = "cod_distritos", nullable = false)
 	private DepartamentosModel codUbigeo;
 
 	public SucursalesModel() {
