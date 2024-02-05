@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -30,24 +31,28 @@ public class SucursalesModel {
 	@Column(name = "ruc", length = 15, nullable = false)
 	private String ruc;
 	
-	@OneToOne()
+	@ManyToOne
 	@JoinColumn(name = "cod_distritos", nullable = false)
-	private DepartamentosModel codUbigeo;
+	private DistritosModel ubigeo;
 
 	public SucursalesModel() {
 		super();
 	}
 
+	
+
 	public SucursalesModel(int codSucursal, String nombreSucursal, String direccion, String telefono, String ruc,
-			DepartamentosModel codUbigeo) {
+			DistritosModel ubigeo) {
 		super();
 		this.codSucursal = codSucursal;
 		this.nombreSucursal = nombreSucursal;
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.ruc = ruc;
-		this.codUbigeo = codUbigeo;
+		this.ubigeo = ubigeo;
 	}
+
+
 
 	public int getCodSucursal() {
 		return codSucursal;
@@ -89,19 +94,27 @@ public class SucursalesModel {
 		this.ruc = ruc;
 	}
 
-	public DepartamentosModel getCodUbigeo() {
-		return codUbigeo;
+	
+
+	public DistritosModel getUbigeo() {
+		return ubigeo;
 	}
 
-	public void setCodUbigeo(DepartamentosModel codUbigeo) {
-		this.codUbigeo = codUbigeo;
+
+
+	public void setUbigeo(DistritosModel ubigeo) {
+		this.ubigeo = ubigeo;
 	}
+
+
 
 	@Override
 	public String toString() {
 		return "SucursalesModel [codSucursal=" + codSucursal + ", nombreSucursal=" + nombreSucursal + ", direccion="
-				+ direccion + ", telefono=" + telefono + ", ruc=" + ruc + ", codUbigeo=" + codUbigeo + "]";
+				+ direccion + ", telefono=" + telefono + ", ruc=" + ruc + ", ubigeo=" + ubigeo + "]";
 	}
+
+
 
 	
 	

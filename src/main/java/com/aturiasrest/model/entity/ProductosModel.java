@@ -40,7 +40,7 @@ public class ProductosModel {
 	private boolean estado;
 	
 	@OneToOne()
-	@JoinColumn(name = "cod_categoria", nullable = false)
+	@JoinColumn(name = "cod_categoria")
 	private CategoriasModel categoria;
 
 	public ProductosModel() {
