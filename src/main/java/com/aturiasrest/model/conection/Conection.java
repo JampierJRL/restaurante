@@ -46,7 +46,7 @@ public class Conection {
 		driver.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
 		driver.setUrl(
-				"jdbc:mysql://localhost:3306/dbasturiosrest?useSSL=false&serverTimezone=America/Lima&allowPublicKeyRetrieval=true");
+				"jdbc:mysql://localhost:3306/dbasturiasrest?useSSL=false&serverTimezone=America/Lima&allowPublicKeyRetrieval=true");
 		driver.setUsername("root");
 		driver.setPassword("janpier159");
 

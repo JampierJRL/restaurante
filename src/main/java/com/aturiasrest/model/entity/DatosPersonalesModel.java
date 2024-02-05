@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -28,7 +29,7 @@ public class DatosPersonalesModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cod_persona", nullable = false)
+	@Column(name = "cod_persona")
 	private int codPersona;
 
 	@Min(value = 8, message = "ingrese como minimo 8 caracteres")
@@ -99,11 +100,11 @@ public class DatosPersonalesModel {
 	@Column(name = "estado_persona", columnDefinition = "TINYINT(1) default 1")
 	private boolean estadoPersona;
 
-	@OneToOne()
+	@ManyToOne
 	@JoinColumn(name = "cod_tipo_documento", nullable = false)
 	private TipoDocumentoModel tipoDocumento;
 	
-	@OneToOne()
+	@ManyToOne
 	@JoinColumn(name = "cod_distritos", nullable = false)
 	private DistritosModel ubigeo;
 
