@@ -10,7 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 
@@ -23,9 +23,6 @@ public class UsuarioModel {
 	@Column(name = "cod_usuario", nullable = false)
 	private int codUsuario;
 	
-	@OneToOne()
-	@JoinColumn(name = "cod_persona", nullable = false)
-	private DatosPersonalesModel persona;
 	
 	@Email
 	@Column(name = "email", length = 45,nullable = false)
@@ -43,32 +40,40 @@ public class UsuarioModel {
 	@Column(name = "estado_clave", columnDefinition = "TINYINT default 1")
 	private boolean estadoClave;
 	
-	@OneToOne()
+	@ManyToOne 
+	@JoinColumn(name = "cod_perfil", nullable = false)
+	private PerfilesModel perfil;
+	
+	@ManyToOne
 	@JoinColumn(name = "cod_sucursal", nullable = false)
 	private SucursalesModel sucursal;
 	
-	@OneToOne()
-	@JoinColumn(name = "cod_perfil", nullable = false)
-	private PerfilesModel perfil;
-
+	@ManyToOne
+	@JoinColumn(name = "cod_persona", nullable = false)
+	private DatosPersonalesModel persona;
+	
 	public UsuarioModel() {
 		super();
 	}
+	
+	
 
-	public UsuarioModel(int codUsuario, DatosPersonalesModel persona, @Email String email, String password,
-			Date fechaCambioClave, boolean estadoCuenta, boolean estadoClave, SucursalesModel sucursal,
-			PerfilesModel perfil) {
+	public UsuarioModel(int codUsuario, @Email String email, String password, Date fechaCambioClave,
+			boolean estadoCuenta, boolean estadoClave, PerfilesModel perfil, SucursalesModel sucursal,
+			DatosPersonalesModel persona) {
 		super();
 		this.codUsuario = codUsuario;
-		this.persona = persona;
 		this.email = email;
 		this.password = password;
 		this.fechaCambioClave = fechaCambioClave;
 		this.estadoCuenta = estadoCuenta;
 		this.estadoClave = estadoClave;
-		this.sucursal = sucursal;
 		this.perfil = perfil;
+		this.sucursal = sucursal;
+		this.persona = persona;
 	}
+
+
 
 	public int getCodUsuario() {
 		return codUsuario;
@@ -76,14 +81,6 @@ public class UsuarioModel {
 
 	public void setCodUsuario(int codUsuario) {
 		this.codUsuario = codUsuario;
-	}
-
-	public DatosPersonalesModel getPersona() {
-		return persona;
-	}
-
-	public void setPersona(DatosPersonalesModel persona) {
-		this.persona = persona;
 	}
 
 	public String getEmail() {
@@ -126,14 +123,6 @@ public class UsuarioModel {
 		this.estadoClave = estadoClave;
 	}
 
-	public SucursalesModel getSucursal() {
-		return sucursal;
-	}
-
-	public void setSucursal(SucursalesModel sucursal) {
-		this.sucursal = sucursal;
-	}
-
 	public PerfilesModel getPerfil() {
 		return perfil;
 	}
@@ -142,10 +131,28 @@ public class UsuarioModel {
 		this.perfil = perfil;
 	}
 
+	public SucursalesModel getSucursal() {
+		return sucursal;
+	}
+
+	public void setSucursal(SucursalesModel sucursal) {
+		this.sucursal = sucursal;
+	}
+
+	public DatosPersonalesModel getPersona() {
+		return persona;
+	}
+
+	public void setPersona(DatosPersonalesModel persona) {
+		this.persona = persona;
+	}
+
 	@Override
 	public String toString() {
-		return "UsuarioModel [codUsuario=" + codUsuario + ", persona=" + persona + ", email=" + email + ", password="
-				+ password + ", fechaCambioClave=" + fechaCambioClave + ", estadoCuenta=" + estadoCuenta
-				+ ", estadoClave=" + estadoClave + ", sucursal=" + sucursal + ", perfil=" + perfil + "]";
+		return "UsuarioModel [codUsuario=" + codUsuario + ", email=" + email + ", password=" + password
+				+ ", fechaCambioClave=" + fechaCambioClave + ", estadoCuenta=" + estadoCuenta + ", estadoClave="
+				+ estadoClave + ", perfil=" + perfil + ", sucursal=" + sucursal + ", persona=" + persona + "]";
 	}
+	
+	
 }
